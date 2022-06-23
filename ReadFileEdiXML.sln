@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadFileEdiXML", "ReadFileEdiXML\ReadFileEdiXML.csproj", "{EB1E265B-DA67-4EBB-9790-F469AE852411}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB1E265B-DA67-4EBB-9790-F469AE852411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB1E265B-DA67-4EBB-9790-F469AE852411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB1E265B-DA67-4EBB-9790-F469AE852411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB1E265B-DA67-4EBB-9790-F469AE852411}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {547C4402-4F08-45FF-BE98-21F21955AE3F}
+	EndGlobalSection
+EndGlobal

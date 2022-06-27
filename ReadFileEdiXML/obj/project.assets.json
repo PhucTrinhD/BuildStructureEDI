@@ -53,11 +53,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\phucdtrinh\\OneDrive - DiCentral\\Desktop\\BuildStructureEDI\\ReadFileEdiXML\\ReadFileEdiXML.csproj",
+      "projectUniqueName": "C:\\PHUC_DATAA\\Dicentral\\Diautomotive\\Report\\BuildStructureEDI\\ReadFileEdiXML\\ReadFileEdiXML.csproj",
       "projectName": "ReadFileEdiXML",
-      "projectPath": "C:\\Users\\phucdtrinh\\OneDrive - DiCentral\\Desktop\\BuildStructureEDI\\ReadFileEdiXML\\ReadFileEdiXML.csproj",
+      "projectPath": "C:\\PHUC_DATAA\\Dicentral\\Diautomotive\\Report\\BuildStructureEDI\\ReadFileEdiXML\\ReadFileEdiXML.csproj",
       "packagesPath": "C:\\Users\\phucdtrinh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\phucdtrinh\\OneDrive - DiCentral\\Desktop\\BuildStructureEDI\\ReadFileEdiXML\\obj\\",
+      "outputPath": "C:\\PHUC_DATAA\\Dicentral\\Diautomotive\\Report\\BuildStructureEDI\\ReadFileEdiXML\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\phucdtrinh\\AppData\\Roaming\\NuGet\\NuGet.Config",

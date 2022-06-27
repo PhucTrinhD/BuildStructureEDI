@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zdaRuuwIkiRB2tFh8S4Z6Rt0kwSgq1NleClcIctbXesuvCZS1xNto4cZiItc0J09ZuNroZzvIctb2eoCklSkhQ==",
+  "dgSpecHash": "49ClRou94KZ9AR92SrOb2WO0vTMHzMyX1iuOG0E9aescXBKyK3V//hmBOwxClrtLpYMJIKg0FRNUlds/1a2dSA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\phucdtrinh\\OneDrive - DiCentral\\Desktop\\BuildStructureEDI\\ReadFileEdiXML\\ReadFileEdiXML.csproj",
+  "projectFilePath": "C:\\PHUC_DATAA\\Dicentral\\Diautomotive\\Report\\BuildStructureEDI\\ReadFileEdiXML\\ReadFileEdiXML.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\phucdtrinh\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
   ],

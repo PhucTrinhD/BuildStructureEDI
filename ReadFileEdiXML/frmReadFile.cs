@@ -2,6 +2,7 @@
 using ReadFileEdiXML.Libraries;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -59,9 +60,12 @@ namespace ReadFileEdiXML
         public void SetText(string path)
         {
             var listPlane = ConvertXmlToListPlane(path);
+            var listJson = BuildListPlaneToListJson(listPlane);
             txtShowData.Text = File.ReadAllText(path);
             //txtDataPure.Text = BuildListPlaneToJson(listPlane);
-            txtDataPure.Text = ConvertDataXmlToJson(path);
+            //txtDataPure.Text = ConvertDataXmlToJson(path);
+            txtDataPure.Text = BuildListPlaneToJsonStructure(listJson);
+
             MessageBox.Show(readFileSuccess, titlePopup, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -175,6 +179,27 @@ namespace ReadFileEdiXML
             return resultData;
         }
 
+        public List<ModleObjetJson> BuildListPlaneToListJson(List<ModleObjetJson> list)
+        {
+            var listParent = new Dictionary<long, ModleObjetJson>();
+            var nested = new List<ModleObjetJson>();
+            string json = string.Empty;
+
+            foreach (ModleObjetJson item in list)
+            {
+                if (listParent.ContainsKey(item.ParentComponentID))
+                    // add to the parent's child list
+                    listParent[item.ParentComponentID].ListChild.Add(item);
+                else
+                    // no parent added yet (or this is the first time)
+                    nested.Add(item);
+
+                listParent.Add(item.ID, item);
+            }
+
+            return nested;
+        }
+
         public string BuildListPlaneToJson(List<ModleObjetJson> list)
         {
             var listParent = new Dictionary<long, ModleObjetJson>();
@@ -206,6 +231,145 @@ namespace ReadFileEdiXML
 
             return json;
         }
+
+        public static void AddProperty(ExpandoObject expando, string propertyName, object propertyValue)
+        {
+            // ExpandoObject supports IDictionary so we can extend it like this
+            var expandoDict = expando as IDictionary<string, object>;
+            if (expandoDict.ContainsKey(propertyName))
+                expandoDict[propertyName] = propertyValue;
+            else
+                expandoDict.Add(propertyName, propertyValue);
+        }
+
+        public string BuildListPlaneToJsonStructure(List<ModleObjetJson> list)
+        {
+            string json = string.Empty;
+
+            dynamic tempItem = new ExpandoObject();
+            IDictionary<string, object> jHeader = new ExpandoObject(); var jDetail = new List<dynamic>(); ;
+            IDictionary<string, object> jSummary = new ExpandoObject();
+
+            foreach (ModleObjetJson item in list)
+            {
+                //build Header
+                if (item.Name == "Header")
+                {
+                    addParent(item.ListChild, jHeader);
+                }
+
+                //build Detail
+                if (item.Name == "Detail")
+                {
+                    IDictionary<string, object> objeDetail = new ExpandoObject();
+                    addParent(item.ListChild, objeDetail);
+                    jDetail.Add(objeDetail);
+                }
+
+                //build Summary
+                if (item.Name == "Summary")
+                {
+                    addParent(item.ListChild, jSummary);
+                }
+            }
+
+            tempItem.Header = jHeader;
+            tempItem.Detail = jDetail;
+            tempItem.Summary = jSummary;
+
+            var formatting = Formatting.Indented;
+            var serializerSettings = new JsonSerializerSettings
+            {
+                Converters = { new FilteredExpandoObjectConverter() },
+            };
+            json = JsonConvert.SerializeObject(tempItem, formatting, serializerSettings);
+
+            return json;
+        }
+
+        public void addChildren(IList<ModleObjetJson> ListChild, IDictionary<string, object> jHeader, string keyParent)
+        {
+            IDictionary<string, object> clidRow = new ExpandoObject();
+            foreach (var item in ListChild)
+            {
+                var key = item.Name; var value = item.StartWith;
+                if (item.ListChild.Count <= 1)
+                    addPropertyObject(clidRow, key, value);
+                else
+                    addChildren(item.ListChild, clidRow, key);
+            }
+            jHeader.Add(keyParent, clidRow);
+        }
+
+        public void addPropertyObject(IDictionary<string, object> jTemp, string keys, string values)
+        {
+            if (!((IDictionary<string, object>)jTemp).ContainsKey(keys))
+                jTemp.Add(keys, values);
+            else
+                jTemp[keys] = values;
+        }
+
+        public void addParent(IList<ModleObjetJson> ListChild, IDictionary<string, object> jTemp)
+        {
+            foreach (var item in ListChild)
+            {
+                var key = item.Name; var value = item.StartWith;
+                if (item.ListChild.Count <= 1)
+                {
+                    //if (!((IDictionary<string, object>)jTemp).ContainsKey(key))
+                    //{
+                    //    jTemp.Add(key, value);
+                    //}
+                    //else
+                    //{
+                    //    jTemp[key] = value;
+                    //}
+                    addPropertyObject(jTemp, key, value);
+                }
+                else
+                    addChildren(item.ListChild, jTemp, key);
+            }
+        }
+
+        //public string BuildListPlaneToStructureJson(List<ModleObjetJson> list)
+        //{
+        //    var listParent = new Dictionary<long, ModleObjetJson>();
+        //    var nested = new JsonStructureRequest();
+        //    string json = string.Empty;
+
+        //    Header jHeader = new Header();
+
+        //    foreach (ModleObjetJson item in list)
+        //    {
+        //        if (listParent.ContainsKey(item.ParentComponentID))
+        //            // add to the parent's child list
+        //            listParent[item.ParentComponentID].ListChild.Add(item);
+        //        else
+        //        {
+        //            if(item.ParentComponentID == 0)
+        //            {
+        //                nested.Header =
+        //            }
+        //            nested.Add(item);
+        //        }
+        //            // no parent added yet (or this is the first time)
+
+        //        listParent.Add(item.ID, item);
+        //    }
+
+        //    ComponentModelJson component = new ComponentModelJson()
+        //    {
+        //        Component = nested
+        //    };
+        //    json = JsonConvert.SerializeObject(component, Formatting.Indented,
+        //                       new JsonSerializerSettings
+        //                       {
+        //                           NullValueHandling = NullValueHandling.Ignore,
+        //                           ContractResolver = ScheduleShouldSerializeContractResolver.Instance
+        //                       });
+
+        //    return json;
+        //}
 
         #endregion Method
 

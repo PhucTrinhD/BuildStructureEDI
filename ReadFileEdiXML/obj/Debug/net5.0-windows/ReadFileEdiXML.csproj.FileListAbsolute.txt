@@ -58,3 +58,23 @@ C:\Users\phucdtrinh\OneDrive - DiCentral\Desktop\BuildStructureEDI\ReadFileEdiXM
 C:\Users\phucdtrinh\OneDrive - DiCentral\Desktop\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ref\ReadFileEdiXML.dll
 C:\Users\phucdtrinh\OneDrive - DiCentral\Desktop\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.pdb
 C:\Users\phucdtrinh\OneDrive - DiCentral\Desktop\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.genruntimeconfig.cache
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\bin\Debug\net5.0-windows\ReadFileEdiXML.exe
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\bin\Debug\net5.0-windows\ReadFileEdiXML.deps.json
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\bin\Debug\net5.0-windows\ReadFileEdiXML.runtimeconfig.json
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\bin\Debug\net5.0-windows\ReadFileEdiXML.runtimeconfig.dev.json
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\bin\Debug\net5.0-windows\ReadFileEdiXML.dll
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\bin\Debug\net5.0-windows\ref\ReadFileEdiXML.dll
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\bin\Debug\net5.0-windows\ReadFileEdiXML.pdb
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.csproj.AssemblyReference.cache
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.frmReadFile.resources
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.csproj.GenerateResource.cache
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.GeneratedMSBuildEditorConfig.editorconfig
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.AssemblyInfoInputs.cache
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.AssemblyInfo.cs
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.csproj.CoreCompileInputs.cache
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.csproj.CopyComplete
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.dll
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ref\ReadFileEdiXML.dll
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.pdb
+C:\PHUC_DATAA\Dicentral\Diautomotive\Report\BuildStructureEDI\ReadFileEdiXML\obj\Debug\net5.0-windows\ReadFileEdiXML.genruntimeconfig.cache

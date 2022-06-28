@@ -60,11 +60,14 @@ namespace ReadFileEdiXML
         public void SetText(string path)
         {
             var listPlane = ConvertXmlToListPlane(path);
-            var listJson = BuildListPlaneToListJson(listPlane);
+           
+            //var listJson = BuildListPlaneToListJson(listPlane);
             txtShowData.Text = File.ReadAllText(path);
             //txtDataPure.Text = BuildListPlaneToJson(listPlane);
             //txtDataPure.Text = ConvertDataXmlToJson(path);
-            txtDataPure.Text = BuildListPlaneToJsonStructure(listJson);
+            //txtDataPure.Text = BuildListJsonToJsonStructure(listJson);
+
+            txtDataPure.Text = ListPlaneToJsonStructure.BuildListPlaneToJsonStructure(listPlane);
 
             MessageBox.Show(readFileSuccess, titlePopup, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -196,7 +199,6 @@ namespace ReadFileEdiXML
 
                 listParent.Add(item.ID, item);
             }
-
             return nested;
         }
 
@@ -241,8 +243,8 @@ namespace ReadFileEdiXML
             else
                 expandoDict.Add(propertyName, propertyValue);
         }
-
-        public string BuildListPlaneToJsonStructure(List<ModleObjetJson> list)
+        
+        public string BuildListJsonToJsonStructure(List<ModleObjetJson> list)
         {
             string json = string.Empty;
 
@@ -287,18 +289,28 @@ namespace ReadFileEdiXML
             return json;
         }
 
-        public void addChildren(IList<ModleObjetJson> ListChild, IDictionary<string, object> jHeader, string keyParent)
+        public void addChildren(List<ModleObjetJson> ListChild, IDictionary<string, object> jHeader, string keyParent)
         {
             IDictionary<string, object> clidRow = new ExpandoObject();
             foreach (var item in ListChild)
             {
                 var key = item.Name; var value = item.StartWith;
-                if (item.ListChild.Count <= 1)
+                var listSame = ListChild.Where(a => a.Name == item.Name).ToList();
+
+                if (item.ListChild.Count <= 1 && listSame.Count() <= 1)
                     addPropertyObject(clidRow, key, value);
                 else
-                    addChildren(item.ListChild, clidRow, key);
+                {
+                    if (listSame != null && listSame.Count > 0 && !((IDictionary<string, object>)clidRow).ContainsKey(key))
+                    {
+                        mergeObjectToList(listSame, clidRow, key);
+                    }
+                    else
+                        addChildren(item.ListChild, clidRow, key);
+                }
             }
-            jHeader.Add(keyParent, clidRow);
+            if (!((IDictionary<string, object>)jHeader).ContainsKey(keyParent))
+                jHeader.Add(keyParent, clidRow);
         }
 
         public void addPropertyObject(IDictionary<string, object> jTemp, string keys, string values)
@@ -309,26 +321,45 @@ namespace ReadFileEdiXML
                 jTemp[keys] = values;
         }
 
-        public void addParent(IList<ModleObjetJson> ListChild, IDictionary<string, object> jTemp)
+        public void addParent(List<ModleObjetJson> ListChild, IDictionary<string, object> jTemp)
         {
             foreach (var item in ListChild)
             {
                 var key = item.Name; var value = item.StartWith;
-                if (item.ListChild.Count <= 1)
+
+                var listSame = ListChild.Where(a => a.Name == item.Name).ToList();
+
+                if (item.ListChild.Count <= 1 && listSame.Count() <= 1)
                 {
-                    //if (!((IDictionary<string, object>)jTemp).ContainsKey(key))
-                    //{
-                    //    jTemp.Add(key, value);
-                    //}
-                    //else
-                    //{
-                    //    jTemp[key] = value;
-                    //}
                     addPropertyObject(jTemp, key, value);
                 }
                 else
-                    addChildren(item.ListChild, jTemp, key);
+                {
+                    if (listSame != null && listSame.Count > 0 && !((IDictionary<string, object>)jTemp).ContainsKey(key))
+                    {
+                        mergeObjectToList(listSame, jTemp, key);
+                    }
+                    else
+                        addChildren(item.ListChild, jTemp, key);
+                }
             }
+        }
+
+        public void mergeObjectToList(List<ModleObjetJson> ListChild, IDictionary<string, object> jTemp, string keyParent)
+        {
+            IDictionary<string, object> childRow = new ExpandoObject();
+            int index = 1;
+            foreach (var item in ListChild)
+            {
+                var key = item.Name + index; var value = item.StartWith;
+                if (item.ListChild.Count <= 1)
+                    addPropertyObject(childRow, key, value);
+                else
+                    addChildren(item.ListChild, childRow, key);
+
+                index++;
+            }
+            jTemp.Add(keyParent, childRow);
         }
 
         //public string BuildListPlaneToStructureJson(List<ModleObjetJson> list)

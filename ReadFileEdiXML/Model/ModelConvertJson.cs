@@ -16,7 +16,7 @@ namespace ReadFileEdiXML.Model
             public bool IsRepeatable { get; set; }
 
            [JsonProperty("children", NullValueHandling = NullValueHandling.Ignore)]
-            public IList<ModleObjetJsonTemp> ListChild { get; set; } = new List<ModleObjetJsonTemp>();
+            public List<ModleObjetJsonTemp> ListChild { get; set; } = new List<ModleObjetJsonTemp>();
         }
 
         public class ModleObjetJson
@@ -30,7 +30,7 @@ namespace ReadFileEdiXML.Model
             public bool IsRepeatable { get; set; }
 
             [JsonProperty("children", NullValueHandling = NullValueHandling.Ignore)]
-            public IList<ModleObjetJson> ListChild { get; set; } = new List<ModleObjetJson>();
+            public List<ModleObjetJson> ListChild { get; set; } = new List<ModleObjetJson>();
         }
 
 
